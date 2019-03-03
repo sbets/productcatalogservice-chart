@@ -1,0 +1,27 @@
+## Images
+image:
+  registry: gcr.io
+  repository: google-samples/microservices-demo/productcatalogservice
+  tag: v0.1.0
+  pullPolicy: Always
+  port: 3550
+  cmd: ["/bin/grpc_health_probe", "-addr=:3550"]
+
+global:
+  imageRegistry: gcr.io
+  name: productcatalogservice
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi
+
+service:
+  type: ClusterIP
+  ports:
+    - name: grpc
+      port: 3550
+      targetPort: 3550
